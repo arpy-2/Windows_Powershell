@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# VARIABLES
+# ---------
+# Variable de sistema (información del sistema)
+HORA_ACTUAL=$(date)  # Obtiene hora actual del sistema
+
+# Variable de entorno (información del usuario)
+USUARIO_ACTUAL="$USER"  # Nombre del usuario actual
+
+echo "=== CALCULADORA DE HORA FUTURA ==="
+echo "Usuario actual (variable de entorno USER): $USUARIO_ACTUAL"
+echo "Hora actual del sistema: $HORA_ACTUAL"
+echo ""
+
+# Pedir segundos hasta que sea válido
+while true; do
+    read -p "¿Cuántos segundos? (número positivo): " SEGUNDOS
+    
+    # Validar que sea número entero positivo
+    if [[ "$SEGUNDOS" =~ ^[0-9]+$ ]] && [ "$SEGUNDOS" -gt 0 ]; then
+        break
+    else
+        echo "ERROR: Debe ser un número positivo (ej: 60, 3600, 10000)"
+    fi
+done
+
+echo ""
+echo "✅ Segundos válidos: $SEGUNDOS"
+echo ""
+
+# Calcular hora futura
+HORA_FUTURA=$(date -d "$SEGUNDOS seconds")  # Suma los segundos a la hora actual
+
+# Mostrar resultados
+echo "=== RESULTADO ==="
+echo "Usuario: $USUARIO_ACTUAL (variable de entorno)"
+echo "Hora actual: $HORA_ACTUAL (variable de sistema)"
+echo "Dentro de $SEGUNDOS segundos será:"
+echo "$HORA_FUTURA (variable de sistema)"

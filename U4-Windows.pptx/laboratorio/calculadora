@@ -1,0 +1,35 @@
+#!/bin/bash
+
+mostrar_menu() {
+	echo "Calculadora"
+	echo "1) Suma"
+	echo "2) Resta"
+	echo "3) Salir"
+}
+
+while true; do
+	mostrar_menu
+	read -p "Elige una opcion: " opcion
+	if (( opcion == 3 )); then
+		echo "Cerrando programa, adios"
+		break
+	fi
+	
+	read -p "Dime un numero " number1
+	read -p "Dime otro numero " number2
+	
+	case $opcion in
+		1)
+			resultado=$(( number1 + number2 ))
+			echo "La suma es $resultado"
+			;;
+		2)
+			resultado=$(( number1 - number2))
+			echo "La resta es $resultado"
+			;;
+		*)
+			echo "Opcion invalida"
+			;;
+	esac
+	echo ""
+done

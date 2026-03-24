@@ -1,0 +1,33 @@
+#!/bin/bash
+
+echo "CALCULADORA DE EDAD"
+echo "==================="
+
+# Pedir fecha de nacimiento
+read -p "Tu fecha de nacimiento (YYYY-MM-DD): " fecha_nac
+
+# Obtener fecha y hora actual en segundos
+fecha_actual=$(date +%s)
+
+# Convertir fecha nacimiento a segundos
+fecha_nac_seg=$(date -d "$fecha_nac" +%s)
+
+# Calcular diferencia en segundos
+segundos=$(( fecha_actual - fecha_nac_seg ))
+
+# Convertir a otras unidades
+minutos=$(( segundos / 60 ))
+horas=$(( minutos / 60 ))
+dias=$(( horas / 24 ))
+meses=$(( dias / 30 ))
+anios=$(( meses / 12 ))
+
+# Mostrar resultados
+echo ""
+echo "RESULTADOS:"
+echo "-----------"
+echo "Años: $anios"
+echo "Meses: $meses"
+echo "Días: $dias"
+echo "Minutos: $minutos"
+echo "Segundos: $segundos"
